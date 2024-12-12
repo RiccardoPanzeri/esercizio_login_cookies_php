@@ -1,6 +1,11 @@
 <?php
     include "credenziali_utente.php"; // includo il file con le credenziali utente del DBMS
-
+    
+    echo "<pre>";
+    var_dump($_POST);
+    
+    echo "</pre>";
+    
     //creo la connessione con il DBMS, con gli stessi passaggi del file di sign up
     try{
         $connessione = new PDO("mysql:host={$server};dbname={$db}", $username, $password);
@@ -12,14 +17,14 @@
     }
     //recupero i dati dalle variabili superglobali
     $usernameUtente = htmlspecialchars($_POST["username"]);
-    $passwordUtente = htmlspecialchars($_POST["passwordUtente"]);
-
+    $passwordUtente =$_POST["passwordUtente"];
+    echo  "$passwordUtente\n";
     if(empty($usernameUtente) || empty($passwordUtente)){
         echo "Tutti i campi sono obbligatori";
         die();
     }
 
-    //controllo se un cookie di riconoscimento è stato già creato in precedenza
+   /* //controllo se un cookie di riconoscimento è stato già creato in precedenza
     if(isset($_COOKIE["cookieRiconoscimentoUtente"])){//uso il nome che ho dato al cookie alla creazione, insieme alla funzione isset(), per controllare se esiste
         //controllo se il codice univoco generato nel cookie corrisponde ad un utente registrato
         $stmt = $connessione->prepare("SELECT * FROM utenti WHERE cookie = :codiceCookie");
@@ -56,16 +61,21 @@
             $stmt->execute();
         }
 
-    }
+    }*/
     //effettuo l'accesso, se user e password coincidono con quanto risulta nel DB
         $stmt = $connessione->prepare("SELECT * FROM utenti WHERE username = :userName");
         $stmt->bindParam(':userName', $usernameUtente);
+        
         $stmt->execute();
         $utente = $stmt->fetch(PDO::FETCH_ASSOC);//recupero l'utente come array associativo
         if($utente && password_verify($passwordUtente, $utente["password_utente"])){//se l'utente esiste e la password coincide
             header("location:.\area_riservata.php");
         }else{
-            echo "<script>alert('Il nome utente o la password non corrispondono'); window.location.href='../index.html'</script>";
+            echo "<script>alert('Il nome utente o la password non corrispondono')</script>"; //window.location.href='../index.html'</script>";
+            echo "$usernameUtente\n";
+            echo  "$passwordUtente\n";
+            echo "{$utente["password_utente"]}\n";
+            echo strlen($utente["password_utente"]);
         }
     
       
