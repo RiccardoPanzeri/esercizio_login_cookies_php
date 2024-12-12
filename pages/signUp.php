@@ -1,7 +1,7 @@
 <?php
     include "./credenziali_utente.php";//importo il file contenente le variabili che non voglio mostrare
   
-    
+      //creo la connessione con il DBMS
     try{
         $connessione = new PDO("mysql:host={$server};dbname={$db}", $username, $password);
         $connessione->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//configuro la connessione affinchè gestista le eccezioni con la classe di eccezioni apposita messa a disposizione da PDO
