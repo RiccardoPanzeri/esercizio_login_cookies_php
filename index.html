@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home page</title>
+</head>
+<body>
+    <h1 class="connection">accedi</h1>
+    <form method="post" action=".\pages\login.php">
+        <div class="formDiv">
+            <div>
+                <label for="username" class="para">Username</label>
+                <input type="text" name="username" class="textInput">
+            </div>
+            <div>
+                <label for="password" class="para">Password</label>
+                <input type="password"  name="password" class="textInput">
+            </div>
+            <div>
+                <label for="ricordami" class="para">Ricordami</label>
+                <input type="checkbox" name="ricordami" class="para">
+            </div>
+            <button type="submit" class="para">Accedi</button>
+        </div>
+    </form>
+</body>
+</html>
