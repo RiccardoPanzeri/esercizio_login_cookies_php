@@ -1,3 +1,36 @@
+<?php
+include ".\\pages\\credenziali_utente.php";
+// Verifica se il cookie di riconoscimento esiste già
+    if (isset($_COOKIE["cookieRiconoscimentoUtente"])) {
+    // Verifica se il cookie esiste nel database
+    try{
+        $connessione = new PDO("mysql:host={$server};dbname={$db}", $username, $password);
+        $connessione->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }catch(PDOException $e){
+        echo "Errore di connessione al dbms: ".$e->getMessage();
+    }
+        $stmt = $connessione->prepare("SELECT * FROM utenti WHERE cookie = :codiceCookie");
+        $stmt->bindParam(":codiceCookie", $_COOKIE["cookieRiconoscimentoUtente"]);
+        $stmt->execute();
+        $utente = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($utente) {
+            // Se il cookie è valido e corrisponde a un utente, reindirizza all'area riservata
+            echo var_dump($_COOKIE);//debug
+            header("Location: ./pages/area_riservata.php");
+            
+            die();
+    }
+    $connessione = null;
+
+}
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
