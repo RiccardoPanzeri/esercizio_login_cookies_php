@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Home page</title>
+    <link rel="stylesheet" href="../style.css">
+    <title>Registrati</title>
 </head>
 <body>
-    <h1 class="connection">accedi</h1>
-    <form method="post" action=".\pages\login.php">
+    <h1 class="connection">crea un nuovo account</h1>
+    <form method="post" action=".\signUp.php">
         <div class="formDiv">
+            <div>
+                <label for="email" class="para">Email</label>
+                <input type="email" name="email" class="textInput" required>
+            </div>
             <div>
                 <label for="username" class="para">Username</label>
                 <input type="text" name="username" class="textInput" required>
@@ -18,13 +22,10 @@
                 <label for="password" class="para">Password</label>
                 <input type="password"  name="passwordUtente" class="textInput" required>
             </div>
-            <div>
-                <label for="ricordami" class="para">Ricordami</label>
-                <input type="checkbox" name="ricordami" class="para">
-            </div>
-            <button type="submit" class="para">Accedi</button>
+            
+            <button type="submit" class="para">Registrati</button>
         </div>
-        <h2 class="text">Non hai un account? <a  href=".\pages\registrati.html">Registrati</a></h2>
+        <h2 class="text">Hai già un account? <a href="..\index.html">Effettua il login</a></h2>
     </form>
 </body>
 </html>
