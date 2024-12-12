@@ -1,10 +1,6 @@
 <?php
     include "credenziali_utente.php"; // includo il file con le credenziali utente del DBMS
-    
-    echo "<pre>";
-    var_dump($_POST);
-    
-    echo "</pre>";
+
     
     //creo la connessione con il DBMS, con gli stessi passaggi del file di sign up
     try{
